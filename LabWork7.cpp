@@ -3,9 +3,9 @@
 #include <locale.h>
 using namespace std;
 
-struct Node { //Структура, описывающая список
+struct Node { 
 	int data;
-	Node* next; //Указатель на адрес следующего элемента списка
+	Node* next; 
 	Node* prev;
 };
 
@@ -19,12 +19,12 @@ public:
 	bool find_position(int position);
 	bool insert_element(int data, int position);
 	bool delete_element(int value);
-	void Write_list();//Функция вывода списка в консоль
+	void Write_list();
 	void sorted_list();
 
-	~Double_Linked_List(); //деструктор списка
+	~Double_Linked_List(); 
 
-private: //Указатели на адреса начала списка и его конца
+private: 
 	Node* first;
 	Node* last;
 };
@@ -35,13 +35,13 @@ Double_Linked_List::Double_Linked_List() {
 };
 
 Double_Linked_List::Double_Linked_List(int data) {
-	Node* nd = new Node{ data, nullptr, nullptr}; //Выделение памяти под новый элемент структуры
+	Node* nd = new Node{ data, nullptr, nullptr}; 
 	first = nd;
 	last = nd;
 	last->next = nullptr;
 };
 
-bool Double_Linked_List::find_position(int position) { //R
+bool Double_Linked_List::find_position(int position) {
 	Node* current_el = first;
 	int counter = 0;
 	while (current_el != nullptr) {
@@ -55,7 +55,7 @@ bool Double_Linked_List::find_position(int position) { //R
 }
 
 
-bool Double_Linked_List::find_element(int data) { //R
+bool Double_Linked_List::find_element(int data) {
 	if (last != nullptr) {
 		Node* current_el = first;
 		while (current_el != nullptr) {
@@ -66,7 +66,7 @@ bool Double_Linked_List::find_element(int data) { //R
 	return false;
 };
 
-bool Double_Linked_List::add_element(int data) {  // R
+bool Double_Linked_List::add_element(int data) {
 	Node* nd = new Node{ data, nullptr, nullptr };
 	if (first == nullptr) {
 		first = nd;
@@ -81,7 +81,7 @@ bool Double_Linked_List::add_element(int data) {  // R
 	return true;
 };
 
-bool Double_Linked_List::insert_element(int data, int position) { //R
+bool Double_Linked_List::insert_element(int data, int position) {
 	if (!this->find_position(position)) {
 		return false;
 	}
@@ -102,7 +102,7 @@ bool Double_Linked_List::insert_element(int data, int position) { //R
 	return true;
 };
 
-bool Double_Linked_List::delete_element(int value) { //R
+bool Double_Linked_List::delete_element(int value) {
 	if (first == nullptr) {
 		return false;
 	}
@@ -148,7 +148,7 @@ void Double_Linked_List::Write_list() {
 	return;
 }
 
-void Double_Linked_List::sorted_list() { //R
+void Double_Linked_List::sorted_list() {
 	Node* nd = new Node;
 	Node* left = first;
 	Node* right = first->next;
@@ -174,7 +174,7 @@ Double_Linked_List::~Double_Linked_List() {
 		while (current_el != nullptr) {
 			Node* nd = new Node{ 0, current_el->next };
 			delete current_el;
-			first = first->next; //Смена адреса начала на адрес следующего элемента 
+			first = first->next; 
 			current_el = first;
 		}
 	}
